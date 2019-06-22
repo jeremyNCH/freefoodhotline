@@ -7,9 +7,11 @@ const FoodSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    quantity: {
+        type: Number
+    },
     status: {
-        type: Boolean,
-        required: true
+        type: Boolean
     }
 })
 
@@ -21,14 +23,14 @@ const ProfileSchema = new mongoose.Schema({
 
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
 
     foods: [{
         type: FoodSchema
     }]
 })
-
 
 var Profile = mongoose.model('profile', ProfileSchema);
 
