@@ -100,9 +100,7 @@ router.put('/food', [auth, [
 
         const { description, quantity } = req.body;
 
-        const { food, quantity } = req.body;
-
-        const newFood = { food, quantity };
+        const newFood = { description, quantity };
 
         profile.food.unshift(newFood);
 
