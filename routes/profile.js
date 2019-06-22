@@ -1,14 +1,13 @@
 const express = require('express');
-const request = require('request');
 const config = require('config');
 const router = express.Router();
-const auth = require('../../middleware/auth')
 const { check, validationResult } = require('express-validator/check');
 
-const Profile = require('../../models/Profile');
-const Location = require('../../models/Location');
+const Profile = require('../models/Profile');
+const Location = require('../models/Location');
+const auth = require('../middleware/auth');
 
-const geocode = require('../../controllers/geocoding.js');
+//const geocode = require('../controllers/geocoding.js');
 
 // @route  GET api/profile/me
 // @desc   Get current users profile
@@ -40,13 +39,17 @@ router.post('/', [auth, [
     }
 
     const { address } = req.body;
-    const { lat, lng } = await geocode(address);
+    //const { lat, lng } = await geocode(address);
+    const { lat, lng } = {
+        lat: "5",
+        lng: "10"
+    }
 
     const locationFields = {};
 
     if (address) locationFields.address = address;
-    if (lat) locationFields.lat = lat;
-    if (lng) locationFields.lng = lng;
+    if (lat) locationFields.lattitude = lat;
+    if (lng) locationFields.longitude = lng;
     
     const newLocation = new Location(locationFields);
 
@@ -86,7 +89,7 @@ router.post('/', [auth, [
 // @desc   Add a food item to a profile
 // @access Private
 router.put('/food', [auth, [
-    check('food', 'Need to enter food title').not().isEmpty(),
+    check('description', 'Need to enter food title').not().isEmpty(),
     check('quantity', 'Need to enter food title').not().isEmpty()
 ]], async (req, res) => {
     const errors = validationResult(req);
@@ -95,18 +98,19 @@ router.put('/food', [auth, [
         return res.status(400).json({ errors: errors.array() });
     }
 
+    const { description, quantity } = req.body;
+    const newFood = { description, quantity };
+
     try {
         const profile = await Profile.findOne({ user: req.user.id });
 
-        const { description, quantity } = req.body;
+        profile.foods.unshift(newFood);
 
-        const newFood = { description, quantity };
-
-        profile.food.unshift(newFood);
+        await profile.save();
 
         res.json(profile);
     } catch (err) {
-        console.err(err.message);
+        console.error(err.message);
         res.status(500).send('Server error');
     }
 });
@@ -120,9 +124,9 @@ router.delete('/food/:food_id', auth, async (req, res) => {
         const profile = await Profile.findOne({ user: req.user.id });
 
         // Get remove index
-        const removeIndex = profile.food.map(food => food.id).indexOf(req.params.food_id);
+        const removeIndex = profile.foods.map(food => food.id).indexOf(req.params.food_id);
 
-        profile.food.splice(removeIndex, 1);
+        profile.foods.splice(removeIndex, 1);
 
         await profile.save();
 
