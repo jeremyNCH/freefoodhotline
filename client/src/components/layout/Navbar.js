@@ -14,6 +14,7 @@ const Navbar = () => {
 
     const authLinks = (
         <Fragment>
+                <Link to="/dashboard" className="text-center"> Dashboard </Link>
                 <a onClick={onLogout} href="#!" className="text-center">Logout
                 </a>
         </Fragment>

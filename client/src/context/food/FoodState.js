@@ -36,7 +36,7 @@ const FoodState = props => {
 
         try {
 
-            const res = await axios.post('api/profile', { profile: profile_ }, config);
+            const res = await axios.post('/api/profile', { profile: profile_ }, config);
 
             dispatch({ type: CREATE_PROFILE, payload: res.data });
 
@@ -78,7 +78,7 @@ const FoodState = props => {
     // Delete food
     const deleteFood = async id => {
         try {
-            const res = await axios.delete(`api/profile/food/${id}`);
+            const res = await axios.delete(`/api/profile/food/${id}`);
 
             dispatch({
                 type: DELETE_FOOD,
