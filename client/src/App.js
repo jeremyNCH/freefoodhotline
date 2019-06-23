@@ -5,11 +5,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-
 import PrivateRoute from './components/routing/PrivateRoute';
-import TemporaryNav from './components/TemporaryNav';
+
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import Landing from './components/layout/Landing';
 import Home from './components/pages/Home';
-import About from './components/pages/About';
 
 import AuthState from './context/auth/AuthState';
 import setAuthToken from './utils/setAuthToken';
@@ -23,16 +24,17 @@ function App() {
     <AuthState>
       <Router>
         <Fragment>
-            <h1> FreeFood - Dash </h1>
-            <TemporaryNav />
+            <Navbar />
           <Switch>
             <div className="container">
-              <PrivateRoute exact path='/' component={Home} />
+              <PrivateRoute exact path='/dashboard' component={Home} />
+              <Route exact path='/' component={Landing} />
               <Route exact path='/about' component={About} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
             </div>
           </Switch>
+          <Footer />
         </Fragment>
       </Router>
     </AuthState>

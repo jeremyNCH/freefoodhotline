@@ -1,5 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect, Fragment } from 'react'
 import AuthContext from '../../context/auth/authContext';
+import { Link } from 'react-router-dom';
+
+import './login.css';
+import './registration.css';
 
 const Login = props => {
     const authContext = useContext(AuthContext);
@@ -41,29 +45,27 @@ const Login = props => {
         }
     }
 
-    return (
-        <div autocomplete="off" className="form-container">
-            <h1> Account {' '}
-                <span className="text-primary">
-                    Login
-                </span>
-            </h1>
-            <h2>
-                { alert }
-            </h2>
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
-                    <label htmlFor="email">Email Address</label>
-                    <input autocomplete="false" type="email" name="email" value={email} onChange={onChange} />
-                </div>
-                <div className="form-group">
+    return (<Fragment>
+        <div className="sign-in-wrap">
+        <div className="container text-center">
+            <div className="sign-in-form card-lg">
+                <h1 className="text-center">Sign in</h1>
+                <h2> {alert} </h2>
+                <form onSubmit={onSubmit}>
+                    <label htmlFor="email">Email</label>
+                    <input name="email" type="email" id="email" placeholder="Email" class="input" value={email} onChange={onChange}/>
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" value={password} onChange={onChange} />
-                </div>
-                <input type="submit" value="Login" className="btn btn-primary btn-block" />
-            </form>
+                    <input name="password" type="password" id="password" placeholder="Password" class="input" value={password} onChange={onChange}/>
+                    <a href="#" className="register-btn">
+                        <input type="submit" value="Sign in" className="prim" />
+                    </a>
+                    <Link to="/register">Register an account</Link>
+                </form>
+    
+            </div>
         </div>
-    )
+        </div>
+    </Fragment>)
 }
 
 export default Login; 

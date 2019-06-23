@@ -1,0 +1,35 @@
+.banner {
+    padding: 72px 48px 48px 48px;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    height: 480px;
+    width: 100%;
+    /*background-color: magenta;*/
+}
+.banner-img {
+    grid-area: 1 / 1 / 7 / 4;
+    padding: 12px;
+    background: url("../banner-01.svg") no-repeat center;
+    -webkit-background-size: contain;
+    background-size: contain;
+}
+.banner-title {
+    grid-area: 1 / 4 / 3 / 7; padding:12px;
+    line-height: 3em;
+}
+.banner-text { grid-area: 3 / 4 / 5 / 7; padding:12px;}
+.banner-btn { grid-area: 7 / 4 / 5 / 7; padding:12px;}
+
+
+@media only screen and (max-width: 767px) {
+    .banner{
+        display: block;
+        height: max-content;
+    }
+    .banner-img{
+        height: calc(480px - 48px);
+    }
+}

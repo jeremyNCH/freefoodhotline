@@ -1,6 +1,9 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import AuthContext from '../../context/auth/authContext';
+
+import './registration.css';
 
 const Register = props => {
     const authContext = useContext(AuthContext);
@@ -50,35 +53,33 @@ const Register = props => {
     }
 
     return (
-        <div className="form-container">
-            <h1> Account {' '}
-                <span className="text-primary">
-                    Register
-                </span>
-            </h1>
-            <h2>
-                { alert }
-            </h2>
-            <form onSubmit={onSubmit}>
-                <div className="form-group">
+        <Fragment>
+        <div className="container sign-up-wrap">
+        <div className="card-wrap card-lg">
+            <div className="sign-up-img"></div>
+            <div className="sign-up-form">
+                <h1 className="text-center"> Sign up</h1>
+                <h2> {alert} </h2>
+                <form onSubmit={onSubmit}>
                     <label htmlFor="name">Name</label>
-                    <input type="text" name="name" value={name} onChange={onChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email Address</label>
-                    <input type="email" name="email" value={email} onChange={onChange} />
-                </div>
-                <div className="form-group">
+                    <input type="text" name="name" id="name" placeholder="Name" className="input" value={name} onChange={onChange}/>
+                    <label htmlFor="email">Email</label>
+                    <input name="email" type="email" id="email" placeholder="Email" className="input" value={email} onChange={onChange}/>
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" value={password} onChange={onChange} minLength="6"/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password2">Confirm Password</label>
-                    <input type="password" name="password2" value={password2} onChange={onChange} minLength="6"/>
-                </div>
-                <input type="submit" value="Register" className="btn btn-primary btn-block" />
-            </form>
+                    <input name="password" type="password" id="password" placeholder="Password" className="input" value={password} onChange={onChange}/>
+                    <label htmlFor="password">Confirm Password</label>
+                    <input name="password2" type="password" id="password" placeholder="Password" className="input" value={password2} onChange={onChange}/>
+                    <a href="#" class="register-btn">
+                        <input type="submit" value="Sign up" class="prim"/>
+                    </a>
+                    <Link to="/login">Log in!</Link>
+                </form>
+    
+            </div>
         </div>
+    
+    </div>
+    </Fragment>
     )
 }
 
