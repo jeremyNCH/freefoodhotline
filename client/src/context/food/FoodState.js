@@ -2,8 +2,9 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import foodReducer from './foodReducer';
 import FoodContext from './foodContext';
+import history from '../../components/history';
 
-import { GET_PROFILE, ADD_FOOD, DELETE_FOOD, CLEAR_FOODS, PROFILE_PROFILE, CREATE_PROFILE } from '../types';
+import { CHECK_PROFILE, GET_PROFILE, ADD_FOOD, DELETE_FOOD, CLEAR_PROFILE, PROFILE_ERROR, CREATE_PROFILE } from '../types';
 
 const FoodState = props => {
     const initialState = {
@@ -12,6 +13,7 @@ const FoodState = props => {
     }
 
     const [state, dispatch] = useReducer(foodReducer, initialState);
+
 
     // Get profile
     const getProfile = async () => {
@@ -37,6 +39,8 @@ const FoodState = props => {
             const res = await axios.post('api/profile', { profile: profile_ }, config);
 
             dispatch({ type: CREATE_PROFILE, payload: res.data });
+
+            history.push('/dashboard');
 
         } catch (err) {
             dispatch({ type: PROFILE_ERROR, payload: err.response.msg });
@@ -74,7 +78,7 @@ const FoodState = props => {
     // Delete food
     const deleteFood = async id => {
         try {
-            await axios.delete(`api/profile/food/${id}`);
+            const res = await axios.delete(`api/profile/food/${id}`);
 
             dispatch({
                 type: DELETE_FOOD,
@@ -90,6 +94,22 @@ const FoodState = props => {
     
     // Clear foods
     const clearCurrent = () => {
-        dispatch({ type: CLEAR_FOODS });
+        dispatch({ type: CLEAR_PROFILE });
     }
+
+    return (
+        <FoodContext.Provider value={{
+            profile: state.profile,
+            error: state.error,
+            getProfile,
+            createProfile,
+            addFood,
+            deleteFood,
+            clearCurrent
+        }}>
+            {props.children}
+        </FoodContext.Provider>
+    )
 }
+
+export default FoodState;

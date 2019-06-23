@@ -8,7 +8,10 @@ const FoodSchema = new mongoose.Schema({
         required: true
     },
     quantity: {
-        type: Number
+        type: String
+    }, 
+    expiry: {
+        type: String
     },
     status: {
         type: Boolean

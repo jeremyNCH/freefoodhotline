@@ -7,6 +7,7 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
+export const CHECK_PROFILE = 'CHECK_PROFILE';
 export const GET_PROFILE = 'GET_PROFILE';
 export const ADD_FOOD = 'ADD_FOOD';
 export const DELETE_FOOD = 'DELETE_FOOD';

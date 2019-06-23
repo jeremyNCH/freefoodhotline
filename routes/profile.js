@@ -98,8 +98,12 @@ router.put('/food', [auth, [
         return res.status(400).json({ errors: errors.array() });
     }
 
-    const { description, quantity } = req.body;
-    const newFood = { description, quantity };
+    const { description, quantity, expiry } = req.body;
+    const newFood = {};
+
+    if (description) newFood.description = description;
+    if (quantity) newFood.quantity = quantity;
+    if (expiry) newFood.expiry = expiry;
 
     try {
         const profile = await Profile.findOne({ user: req.user.id });

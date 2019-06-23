@@ -1,4 +1,4 @@
-import { GET_PROFILE, ADD_FOOD, DELETE_FOOD, CLEAR_PROFILE, PROFILE_ERROR, CREATE_PROFILE, UPDATE_PROFILE } from '../types';
+import { CHECK_PROFILE, GET_PROFILE, ADD_FOOD, DELETE_FOOD, CLEAR_PROFILE, PROFILE_ERROR, CREATE_PROFILE, UPDATE_PROFILE } from '../types';
 
 export default (state, action) => {
     switch (action.type) {
