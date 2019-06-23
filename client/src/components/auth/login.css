@@ -1,0 +1,64 @@
+form label{
+    display: block !important;
+    width: 300px;
+    margin-top: 12px;
+    color: #000;
+    background-color: transparent;
+}
+form input{
+    display: block !important;
+    width: 300px;
+    border-radius: 5px;
+    height: 36px;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    padding-left: 12px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+form a:last-of-type{margin-bottom: 48px;}
+form a:last-of-type:hover{
+    color: #1E7A93;
+}
+.register-btn{
+    margin-top: 36px;}
+
+.sign-in-wrap{
+    width: 100%;
+    height: 100vh;
+    padding: 48px 72px 48px 72px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sign-in-form{
+    display: block;
+    width: 500px;
+    /*background-color: aqua;*/
+    height: 100%;
+    position: relative;
+    border-radius: 10px;
+    padding-top: 72px;
+}
+
+/*TEXT*/
+.sign-in-form h1{
+    /*padding: 48px;*/
+    height: 15%;
+    border-radius: 0 10px 0 0;
+    color: #1E7A93;
+}
+@media only screen and (max-width: 767px) {
+    .sign-in-wrap{
+        padding: 24px;
+        height: 550px;
+    }
+    .container{padding:48px}
+
+}

@@ -1,0 +1,32 @@
+.content{
+    width: 100%;
+    height: 420px;
+    background-color: darkturquoise;
+    padding: 24px 48px 24px 48px;
+}
+.content:nth-child(odd){filter:brightness(90%);}
+div[class^="content-"]{width: 100%;height: 100%;
+    margin: 12px;}
+
+.content-1-1{
+    background-color: blueviolet;
+}
+.content-1-2{
+    background-color: darkorange;
+}
+.content-2-1{
+    background-color: darkgray;
+}
+.content-2-2{
+    background-color: firebrick;
+}
+.content-2-3{
+    background-color: violet;
+}
+
+@media only screen and (max-width: 767px) {
+    .content{
+        display:block;
+        height: max-content;
+    }
+}
