@@ -98,4 +98,4 @@ function deg2rad(deg) {
 }
 
 
-module.exports = {getCoordFromAddress, getAddressFromCoord, getDistBtwnCoords};
+module.exports = {main, getCoordFromAddress, getAddressFromCoord, getDistBtwnCoords};
