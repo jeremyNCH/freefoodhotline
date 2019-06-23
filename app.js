@@ -1,9 +1,8 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
-const helper = require('./controllers/helper');
+const helper = require('./controllers/Sys');
 const request = require('request');
-const axios = require('axios');
 
 const app = express();
 
@@ -15,26 +14,16 @@ app.use(express.json({
     extended: false
 }));
 
-/*app.get('', async (req, res) => {
-    const address = '155 yorkville avenue, toronto';
-    const coord = helper.kylesAttempt(address);
-    res.json(coord); 
-});*/
-
-app.get('/', async (req, res) => {
-    //const url = 'https://atlas.microsoft.com/search/address/json?api-version=1.0&subscription-key=1Vm1u-zCop81CKzExeI8PQvZSbqfgzQ1Q11njb8uyxY&query=155 yorkville avenue, toronto'
-    const url = "https://atlas.microsoft.com/search/address/json?api-version=1.0&subscription-key=1Vm1u-zCop81CKzExeI8PQvZSbqfgzQ1Q11njb8uyxY&query=155 yorkville avenue, toronto"
-    
-    try {
-        console.log('req sent');
-        const resp = await axios.get(url);
-        console.log('req complete');
-
-        res.json(resp);
-    } catch (err) {
-        res.send('didnt work');
-    }
-})
+app.get('', async (req, res) => {
+    const coord = {'lat': 47.591180, 'lon': -122.332700};
+    // const address = await helper.getCoordFromAddress(coord);
+    // res.send(address);
+    //const address = '155 yorkville avenue, toronto';
+    //const coord = await helper.getAddressFromCoord(address);
+    //res.send(coord);
+    const coord2 = {'lat': 47.111, 'lon': -111};
+    res.send('good');
+});
 
 // Define routes
 app.use('/api/users', require('./routes/users'));

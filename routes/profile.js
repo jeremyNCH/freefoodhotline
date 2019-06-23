@@ -27,6 +27,29 @@ router.get('/me', auth, async (req, res) => {
     }
 });
 
+// @route  GET api/profile/all
+// @desc   Get all users profile
+// @access Private
+router.get('/all', async (req, res) => {
+    try {
+        const profiles = await Profile.find({}, function(err, profiles) {
+            if (err) {
+                console.log(err);
+                return
+            } 
+        });
+        
+        if(!profiles) {
+            return res.status(400).json({ msg: 'There is no profile available'});
+        }
+
+        res.json(profiles); 
+    } catch(err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 // @route  POST api/profile
 // @desc   Create or update user profile
 // @access Private
