@@ -7,7 +7,10 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const LOGOUT = 'LOGOUT';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
-export const GET_FOODS = 'GET_FOODS';
+export const GET_PROFILE = 'GET_PROFILE';
 export const ADD_FOOD = 'ADD_FOOD';
 export const DELETE_FOOD = 'DELETE_FOOD';
-export const CLEAR_FOODS = 'CLEAR_FOODS';
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';
+export const PROFILE_ERROR = 'PROFILE_ERROR';
+export const CREATE_PROFILE = 'CREATE_PROFILE';
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
